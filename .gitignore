@@ -12,6 +12,7 @@ node_modules/
 *.local
 .env.*
 !.env.example
+.env.example
 
 # ==========================================
 # 4. Build & Production Outputs
