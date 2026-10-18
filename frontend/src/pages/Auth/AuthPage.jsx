@@ -90,6 +90,15 @@ const AuthPage = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  /*
+   * ----------------------------------------------------------
+   * HANDLE INPUT
+   * ----------------------------------------------------------
+   *
+   * Updates the appropriate property in formData whenever
+   * the user types into an input.
+   */
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -173,6 +182,8 @@ const AuthPage = () => {
     }
   };
 
+
+   // HANDLE FORM SUBMISSION
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -270,9 +281,7 @@ const AuthPage = () => {
       }
     }
 
-    // ==========================================================
-    // SUBMIT AUTHENTICATION REQUEST
-    // ==========================================================
+
 
     setIsLoading(true);
 
