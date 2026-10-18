@@ -10,7 +10,7 @@ node_modules/
 /backend/.env
 /frontend/.env
 *.local
-.env.example
+.env.*
 !.env.example
 
 # ==========================================
