@@ -10,6 +10,8 @@ node_modules/
 /backend/.env
 /frontend/.env
 *.local
+.env.example
+!.env.example
 
 # ==========================================
 # 4. Build & Production Outputs
