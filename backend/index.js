@@ -22,9 +22,15 @@ import { initializeDatabase } from "./src/config/initDb.js";
 // Top-level await for database schema initialization
 await initializeDatabase();
 
-// ESM __dirname fix
+// // ESM __dirname fix
+// const __filename = fileURLToPath(import.meta.url);
+// const _dirname = path.dirname(_filename); // Fixed typo from _dirname to __dirname
+
+// ============================================================
+// ENVIRONMENT SETTINGS (ESM __dirname fix)
+// ============================================================
 const __filename = fileURLToPath(import.meta.url);
-const _dirname = path.dirname(_filename); // Fixed typo from _dirname to __dirname
+const __dirname = path.dirname(__filename); // Make sure BOTH have TWO underscores (__)
 
 // ============================================================
 // CREATE EXPRESS APPLICATION
