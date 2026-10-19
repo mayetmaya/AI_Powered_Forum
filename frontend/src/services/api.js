@@ -1,12 +1,20 @@
 import axios from "axios";
 import { getToken, removeToken } from "../utils/auth.js";
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
+// // Clean up incoming environment variables to guarantee they end with /api
+// let fallbackUrl = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
+// if (fallbackUrl && !fallbackUrl.endsWith("/api") && !fallbackUrl.endsWith("/api/")) {
+//   fallbackUrl = fallbackUrl.endsWith("/") ? ${fallbackUrl}api : ${fallbackUrl}/api;
+// }
+
+// Clean up incoming environment variables to guarantee they end with /api
+let fallbackUrl = import.meta.env.VITE_API_URL || "http://localhost:4000/api"; if (fallbackUrl && !fallbackUrl.endsWith("/api") && !fallbackUrl.endsWith("/api/")) { fallbackUrl = fallbackUrl.endsWith("/") ? `${fallbackUrl}api` : `${fallbackUrl}/api`; }
+
+const API_BASE_URL = fallbackUrl;
 
 // ============================================================
 // CREATE AXIOS CLIENT
 // ============================================================
-
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
@@ -27,6 +35,7 @@ api.interceptors.request.use(
 
     const token = getToken();
     if (token) {
+      // CRITICAL FIX: Wrapped inside backticks to enable correct string template evaluation
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
